@@ -69,3 +69,23 @@ export const login = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
+
+export function checkAdmin(req){
+  if(!req.user){
+    return false;
+  }
+  if(req.user.type != 'admin'){
+    return false;
+  }
+  return true;
+}
+
+export function checkCustomer(req){
+  if(!req.user){
+    return false;
+  }
+  if(req.user.type!='user'){
+    return false;
+  }
+  return true;
+}

@@ -39,3 +39,18 @@ export const deletePlayer = async (req, res) => {
   }
 };
 
+export const updatePlayer = async (req, res) => {
+  if (!checkAdmin(req)) {
+    return res.status(403).json({ message: "Unauthorized" });
+  }
+  try {
+    await Player.findByIdAndUpdate
+      (req
+        .params
+        .id, req.body);
+    res.status(200).json({ message: "Player updated successfully" });
+  }
+  catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }     
+}

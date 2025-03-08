@@ -1,0 +1,134 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('./assets/images/nature.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+  }
+  
+  .auth-form-wrapper {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  
+  .auth-form-wrapper h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 24px;
+    font-weight: 500;
+    font-size: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+    position: relative;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+
+  }
+  
+  .form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7); 
+  }
+
+  .form-group input:focus {
+    border-color: rgba(255, 255, 255, 0.5); 
+    background-color: rgba(255, 255, 255, 0.15); 
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(220, 214, 214);
+    cursor: pointer;
+  }
+  
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+  
+  .remember-me input {
+    margin-right: 8px;
+  }
+  
+  .forgot-password {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  .auth-submit-btn {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .auth-submit-btn:hover {
+    background-color: #27452f;
+  }
+  
+  
+  
+  .auth-link {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .auth-link a {
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .auth-link a:hover {
+    text-decoration: underline;
+  }
+
+  .password-toggle .fa-eye-slash {
+    color: rgb(220, 214, 214);
+  }

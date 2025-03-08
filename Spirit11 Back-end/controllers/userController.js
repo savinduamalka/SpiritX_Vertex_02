@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 export const signup = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, role = "user" } = req.body;
 
   if (!username || !password) {
     return res.status(400).json({ message: "All fields are required" });
@@ -29,7 +29,7 @@ export const signup = async (req, res) => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const newUser = new User({ username, password: hashedPassword });
+    const newUser = new User({ username, password: hashedPassword, role });
     await newUser.save();
 
     res.status(201).json({ message: "User created successfully" });
@@ -59,7 +59,8 @@ export const login = async (req, res) => {
 
     const payload = {
       id: user._id,
-      username: user.username
+      username: user.username,
+      role: user.role
     };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 

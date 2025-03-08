@@ -70,21 +70,21 @@ export const login = async (req, res) => {
   }
 };
 
-export function checkAdmin(req){
-  if(!req.user){
+export function checkAdmin(req) {
+  if (!req.user) {
     return false;
   }
-  if(req.user.type != 'admin'){
+  if (req.user.role !== 'admin') {
     return false;
   }
   return true;
 }
 
-export function checkCustomer(req){
-  if(!req.user){
+export function checkCustomer(req) {
+  if (!req.user) {
     return false;
   }
-  if(req.user.type!='user'){
+  if (req.user.role !== 'user') {
     return false;
   }
   return true;

@@ -26,3 +26,16 @@ export const getPlayers = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
+
+export const deletePlayer = async (req, res) => {
+  if (!checkAdmin(req)) {
+    return res.status(403).json({ message: "Unauthorized" });
+  }
+  try {
+    await Player.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Player deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};
+

@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import userRouter from "./routes/userRoutes.js";
+import playerRouter from "./routes/playerRoutes.js";
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/users', userRouter);
+app.use('/api/players', playerRouter);
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,

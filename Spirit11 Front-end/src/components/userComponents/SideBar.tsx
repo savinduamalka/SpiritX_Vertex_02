@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaHome, FaUsers, FaDollarSign, FaTrophy, FaList } from "react-icons/fa";
 
 const UserSidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +17,8 @@ const UserSidebar: React.FC = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 md:translate-x-0 md:w-64`}
       >
-        <div className="flex justify-between items-center p-4">
-          <h2 className="text-xl font-semibold">Spirit11</h2>
+        <div className="flex justify-between items-center p-8">
+          <h2 className="text-4xl font-bold animate-pulse transform transition-transform duration-500 hover:scale-110 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-green-500 to-blue-500">Spirit11</h2>
           <button
             className="text-white md:hidden"
             onClick={toggleSidebar}
@@ -38,25 +39,30 @@ const UserSidebar: React.FC = () => {
             </svg>
           </button>
         </div>
-        <ul className="space-y-4 px-4">
+        <ul className="space-y-4 px-8">
           <li>
-            <Link to="/select-team" className="text-lg hover:text-gray-400">
-              Select Your Team
+            <Link to="/home" className="text-lg hover:text-gray-400 flex items-center">
+              <FaHome className="mr-2" /> Home
             </Link>
           </li>
           <li>
-            <Link to="/team" className="text-lg hover:text-gray-400">
-              Team
+            <Link to="/select-team" className="text-lg hover:text-gray-400 flex items-center">
+              <FaUsers className="mr-2" /> Select Your Team
             </Link>
           </li>
           <li>
-            <Link to="/budget" className="text-lg hover:text-gray-400">
-              Budget
+            <Link to="/team" className="text-lg hover:text-gray-400 flex items-center">
+              <FaUsers className="mr-2" /> Team
             </Link>
           </li>
           <li>
-            <Link to="/leaderboard" className="text-lg hover:text-gray-400">
-              Leaderboard
+            <Link to="/budget" className="text-lg hover:text-gray-400 flex items-center">
+              <FaDollarSign className="mr-2" /> Budget
+            </Link>
+          </li>
+          <li>
+            <Link to="/leaderboard" className="text-lg hover:text-gray-400 flex items-center">
+              <FaTrophy className="mr-2" /> Leaderboard
             </Link>
           </li>
         </ul>

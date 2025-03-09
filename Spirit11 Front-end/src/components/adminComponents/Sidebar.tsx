@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaHome, FaUsers, FaChartBar, FaClipboardList } from "react-icons/fa";
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +17,8 @@ const Sidebar: React.FC = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 md:translate-x-0 md:w-64`}
       >
-        <div className="flex justify-between items-center p-4">
-          <h2 className="text-xl font-semibold">Spirit11</h2>
+        <div className="flex justify-between items-center p-8">
+        <h2 className="text-4xl font-bold animate-pulse transform transition-transform duration-500 hover:scale-110 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-green-500 to-blue-500">Spirit11</h2>
           <button
             className="text-white md:hidden"
             onClick={toggleSidebar}
@@ -38,25 +39,25 @@ const Sidebar: React.FC = () => {
             </svg>
           </button>
         </div>
-        <ul className="space-y-4 px-4">
+        <ul className="space-y-4 px-6">
           <li>
-            <Link to="/" className="text-lg hover:text-gray-400">
-              Home
+            <Link to="/admin" className="text-lg hover:text-gray-400 flex items-center">
+              <FaHome className="mr-2" /> Home
             </Link>
           </li>
           <li>
-            <Link to="/admin/players" className="text-lg hover:text-gray-400">
-              Players
+            <Link to="/admin/players" className="text-lg hover:text-gray-400 flex items-center">
+              <FaUsers className="mr-2" /> Players
             </Link>
           </li>
           <li>
-            <Link to="/admin/player-stats" className="text-lg hover:text-gray-400">
-              Player Stats
+            <Link to="/admin/player-stats" className="text-lg hover:text-gray-400 flex items-center">
+              <FaChartBar className="mr-2" /> Player Stats
             </Link>
           </li>
           <li>
-            <Link to="/admin/summary" className="text-lg hover:text-gray-400">
-              Tournament Summary
+            <Link to="/admin/summary" className="text-lg hover:text-gray-400 flex items-center">
+              <FaClipboardList className="mr-2" /> Tournament Summary
             </Link>
           </li>
         </ul>

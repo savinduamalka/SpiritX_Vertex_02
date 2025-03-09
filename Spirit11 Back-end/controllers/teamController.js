@@ -7,9 +7,9 @@ export const selectPlayer = async (req, res) => {
   const { userId, playerId } = req.body;
 
   try {
-    let team = await Team.findOne({ userId });
+    let team = await Team.findOne({ userId: Number(userId) });
     if (!team) {
-      team = new Team({ userId, players: [], budget: 0, points: 0 });
+      team = new Team({ userId: Number(userId), players: [], budget: 0, points: 0 });
     }
 
     const player = await Player.findOne({ playerId });
@@ -21,7 +21,7 @@ export const selectPlayer = async (req, res) => {
       return res.status(400).json({ message: "Team is already full" });
     }
 
-    const user = await User.findOne({ userId });
+    const user = await User.findOne({ userId: Number(userId) });
     const availableBalance = user.initialBudget - team.budget;
 
     if (availableBalance < player.price) {
@@ -43,12 +43,12 @@ export const getTeam = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const team = await Team.findOne({ userId }).populate("players");
+    const team = await Team.findOne({ userId: Number(userId) }).populate("players");
     if (!team) {
       return res.status(404).json({ message: "Team not found" });
     }
 
-    const user = await User.findOne({ userId });
+    const user = await User.findOne({ userId: Number(userId) });
     const availableBalance = user.initialBudget - team.budget;
     const spentBalance = team.budget;
 
@@ -63,7 +63,7 @@ export const getTeamMembers = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const team = await Team.findOne({ userId }).populate("players");
+    const team = await Team.findOne({ userId: Number(userId) }).populate("players");
     if (!team) {
       return res.status(404).json({ message: "Team not found" });
     }
@@ -169,7 +169,7 @@ export const finalizeTeam = async (req, res) => {
   const { userId } = req.params;
   
   try {
-    const team = await Team.findOne({ userId }).populate("players");
+    const team = await Team.findOne({ userId: Number(userId) }).populate("players");
     
     if (!team) {
       return res.status(404).json({ message: "Team not found" });
@@ -179,7 +179,7 @@ export const finalizeTeam = async (req, res) => {
       return res.status(400).json({ message: "Team must have exactly 11 players" });
     }
     
-    const success = await updateTeamPoints(userId);
+    const success = await updateTeamPoints(Number(userId));
     
     if (!success) {
       return res.status(500).json({ message: "Failed to update team points" });

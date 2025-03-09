@@ -103,3 +103,17 @@ export const getAllUsers = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
+
+export const logout = async (req, res) => {
+  try {
+    // Assuming you have a token blacklist or similar mechanism to invalidate tokens
+    const token = req.header("Authorization")?.replace("Bearer ", "");
+    if (token) {
+      // Add token to blacklist or invalidate it
+      // Example: await TokenBlacklist.add(token);
+    }
+    res.status(200).json({ message: "Logout successful" });
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};

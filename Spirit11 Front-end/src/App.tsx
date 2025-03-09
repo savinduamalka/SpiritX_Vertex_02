@@ -10,15 +10,15 @@ import SelectTeam from './pages/userPages/SelectTeam';
 import Budget from './pages/userPages/Budget';
 import Leaderboard from './pages/userPages/Leaderboard';
 import Team from './pages/userPages/Team';
-import Home from './pages/userPages/Home';
+import Home from './pages/userPages/home';
 
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
+      <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Navigate to="/signup" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/admin/players" element={<Players />} />
         <Route path="/admin/player-stats" element={<PlayerStats />} />

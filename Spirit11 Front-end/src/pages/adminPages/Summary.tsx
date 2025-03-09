@@ -7,8 +7,8 @@ import Alert from '@mui/material/Alert';
 interface Summary {
   overallRuns: number;
   overallWickets: number;
-  highestRunScorer: string;
-  highestWicketTaker: string;
+  highestRunScorers: string[];
+  highestWicketTakers: string[];
 }
 
 export default function Summary() {
@@ -41,8 +41,8 @@ export default function Summary() {
             <div>
               <p className="text-lg mb-2"><strong>Overall Runs:</strong> {summary.overallRuns}</p>
               <p className="text-lg mb-2"><strong>Overall Wickets:</strong> {summary.overallWickets}</p>
-              <p className="text-lg mb-2"><strong>Highest Run Scorer:</strong> {summary.highestRunScorer}</p>
-              <p className="text-lg mb-2"><strong>Highest Wicket Taker:</strong> {summary.highestWicketTaker}</p>
+              <p className="text-lg mb-2"><strong>Highest Run Scorers:</strong> {summary.highestRunScorers.join(',  ')}</p>
+              <p className="text-lg mb-2"><strong>Highest Wicket Takers:</strong> {summary.highestWicketTakers.join(',  ')}</p>
             </div>
           ) : (
             <p>Loading summary...</p>

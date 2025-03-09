@@ -1,12 +1,30 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaHome, FaUsers, FaDollarSign, FaTrophy, FaList } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { FaHome, FaUsers, FaDollarSign, FaTrophy, FaList, FaSignOutAlt } from "react-icons/fa";
+import axios from "axios";
 
 const UserSidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      const token = sessionStorage.getItem('token');
+      if (token) {
+        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users/logout`, {}, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('userId');
+        navigate('/login');
+      }
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   };
 
   return (
@@ -64,6 +82,11 @@ const UserSidebar: React.FC = () => {
             <Link to="/leaderboard" className="text-lg hover:text-gray-400 flex items-center">
               <FaTrophy className="mr-2" /> Leaderboard
             </Link>
+          </li>
+          <li>
+            <button onClick={handleLogout} className="text-lg hover:text-gray-400 flex items-center w-full text-left">
+              <FaSignOutAlt className="mr-2" /> Logout
+            </button>
           </li>
         </ul>
       </div>

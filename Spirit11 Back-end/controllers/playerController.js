@@ -10,7 +10,7 @@ export const createPlayer = async (req, res) => {
     return res.status(400).json({ message: "Name, university, and category are required" });
   }
   try {
-    const starting = 1000;
+    const starting = 1010;
     const countDocuments = await Player.countDocuments({});
     const playerId = starting + countDocuments + 1;
 

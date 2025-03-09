@@ -214,3 +214,12 @@ export const getLeaderboard = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
+
+export const getAllTeams = async (req, res) => {
+  try {
+    const teams = await Team.find().populate("players");
+    res.status(200).json(teams);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};

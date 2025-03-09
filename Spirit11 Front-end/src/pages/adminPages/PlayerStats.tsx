@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Sidebar from "../../components/adminComponents/Sidebar";
+import Sidebar from "../../components/adminComponents/AdminSidebar";
 import natureImage from "../../assets/images/new.jpg";
 import Alert from '@mui/material/Alert';
 

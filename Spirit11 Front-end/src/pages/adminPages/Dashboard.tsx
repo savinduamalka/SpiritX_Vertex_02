@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import natureImage from "../../assets/images/new.jpg";
-import Sidebar from "../../components/adminComponents/SideBar";
+import Sidebar from "../../components/adminComponents/AdminSidebar";
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);

@@ -59,10 +59,10 @@ export default function SelectTeam() {
 
   const handleAddPlayer = () => {
     const userId = sessionStorage.getItem('userId'); // Assuming userId is stored in session storage
-    if (userId && team) {
+    if (userId) {
       const selectedPlayer = players.find(player => player.playerId === selectedPlayerId);
       if (selectedPlayer) {
-        if (team.players.length >= 11) {
+        if (team && team.players.length >= 11) {
           setError('You cannot have more than 11 players in your team.');
           return;
         }

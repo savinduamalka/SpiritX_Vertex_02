@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
+    userId: {
+        type: Number,
+        required: true,
+        unique: true
+    },
     username: {
         type: String,
         required: true,
@@ -14,6 +19,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["admin", "user"],
         default: "user"
+    },
+    initialBudget: {
+        type: Number,
+        required: true,
+        default: 9000000
     }
 });
 

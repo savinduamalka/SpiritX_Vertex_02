@@ -7,9 +7,14 @@ export const selectPlayer = async (req, res) => {
   const { userId, playerId } = req.body;
 
   try {
-    let team = await Team.findOne({ userId: Number(userId) });
+    const userIdNumber = Number(userId);
+    if (isNaN(userIdNumber)) {
+      return res.status(400).json({ message: "Invalid user ID" });
+    }
+
+    let team = await Team.findOne({ userId: userIdNumber });
     if (!team) {
-      team = new Team({ userId: Number(userId), players: [], budget: 0, points: 0 });
+      team = new Team({ userId: userIdNumber, players: [], budget: 0, points: 0 });
     }
 
     const player = await Player.findOne({ playerId });
@@ -21,7 +26,7 @@ export const selectPlayer = async (req, res) => {
       return res.status(400).json({ message: "Team is already full" });
     }
 
-    const user = await User.findOne({ userId: Number(userId) });
+    const user = await User.findOne({ userId: userIdNumber });
     const availableBalance = user.initialBudget - team.budget;
 
     if (availableBalance < player.price) {
@@ -43,12 +48,17 @@ export const getTeam = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const team = await Team.findOne({ userId: Number(userId) }).populate("players");
+    const userIdNumber = Number(userId);
+    if (isNaN(userIdNumber)) {
+      return res.status(400).json({ message: "Invalid user ID" });
+    }
+
+    const team = await Team.findOne({ userId: userIdNumber }).populate("players");
     if (!team) {
       return res.status(404).json({ message: "Team not found" });
     }
 
-    const user = await User.findOne({ userId: Number(userId) });
+    const user = await User.findOne({ userId: userIdNumber });
     const availableBalance = user.initialBudget - team.budget;
     const spentBalance = team.budget;
 
@@ -63,7 +73,12 @@ export const getTeamMembers = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const team = await Team.findOne({ userId: Number(userId) }).populate("players");
+    const userIdNumber = Number(userId);
+    if (isNaN(userIdNumber)) {
+      return res.status(400).json({ message: "Invalid user ID" });
+    }
+
+    const team = await Team.findOne({ userId: userIdNumber }).populate("players");
     if (!team) {
       return res.status(404).json({ message: "Team not found" });
     }
@@ -135,10 +150,16 @@ const calculatePlayerPoints = (playerStats) => {
 
 export const updateTeamPoints = async (userId) => {
   try {
-    const team = await Team.findOne({ userId }).populate("players");
+    const userIdNumber = Number(userId);
+    if (isNaN(userIdNumber)) {
+      console.error("Invalid user ID");
+      return false;
+    }
+
+    const team = await Team.findOne({ userId: userIdNumber }).populate("players");
     
     if (!team) {
-      console.error(`Team not found for user ${userId}`);
+      console.error(`Team not found for user ${userIdNumber}`);
       return false;
     }
     
@@ -169,7 +190,12 @@ export const finalizeTeam = async (req, res) => {
   const { userId } = req.params;
   
   try {
-    const team = await Team.findOne({ userId: Number(userId) }).populate("players");
+    const userIdNumber = Number(userId);
+    if (isNaN(userIdNumber)) {
+      return res.status(400).json({ message: "Invalid user ID" });
+    }
+
+    const team = await Team.findOne({ userId: userIdNumber }).populate("players");
     
     if (!team) {
       return res.status(404).json({ message: "Team not found" });
@@ -179,7 +205,7 @@ export const finalizeTeam = async (req, res) => {
       return res.status(400).json({ message: "Team must have exactly 11 players" });
     }
     
-    const success = await updateTeamPoints(Number(userId));
+    const success = await updateTeamPoints(userIdNumber);
     
     if (!success) {
       return res.status(500).json({ message: "Failed to update team points" });

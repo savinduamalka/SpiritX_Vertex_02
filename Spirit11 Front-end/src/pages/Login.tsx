@@ -18,8 +18,12 @@ const Login: React.FC = () => {
 
   const validate = () => {
     const newErrors: { username?: string; password?: string } = {};
-    if (!username) newErrors.username = "Username is required";
-    if (!password) newErrors.password = "Password is required";
+    if (!username) {
+      newErrors.username = "Username is required";
+    }
+    if (!password) {
+      newErrors.password = "Password is required";
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -44,7 +48,15 @@ const Login: React.FC = () => {
       console.log("Login Successful:", response.data);
       sessionStorage.setItem('username', username); // Store username in session
       setAlert({ message: "Login Successful", severity: "success" });
-      navigate("/landing"); 
+
+      // Navigate based on user role
+      const userRole = response.data.role;
+      if (userRole === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
+      
     } catch (error: any) {
       if (error.response) {
         console.error("Error:", error.response.data.message);

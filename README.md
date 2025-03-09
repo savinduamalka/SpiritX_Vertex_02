@@ -123,7 +123,7 @@ Ensure MongoDB is running on your local machine or use a cloud MongoDB service. 
 
 ### Links
 
-- **Front-End Deployment**: [Vercel Deployment Link](https://your-vercel-deployment-link.vercel.app)
+- **Front-End Deployment**: [Vercel Deployment Link](https://spirit-x-vertex-02-btok.vercel.app/login)
 - **Back-End Deployment**: [Render Deployment Link](https://your-render-deployment-link.onrender.com)
 
 ### Additional Implementations or Functionalities

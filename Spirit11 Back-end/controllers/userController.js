@@ -94,3 +94,12 @@ export function checkCustomer(req) {
   }
   return true;
 }
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({ role: { $ne: 'admin' } });
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};

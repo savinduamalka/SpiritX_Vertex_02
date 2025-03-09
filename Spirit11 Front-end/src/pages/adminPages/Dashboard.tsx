@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import natureImage from "../../assets/images/new.jpg";
 import Sidebar from "../../components/adminComponents/Sidebar";
+import LogoutButton from "../../components/LogoutButton"; // Import the LogoutButton component
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
@@ -47,6 +48,7 @@ export default function Dashboard() {
       style={{ backgroundImage: `url(${natureImage})` }}
     >
       <Sidebar />
+      <LogoutButton /> {/* Add the LogoutButton component */}
       <div className="flex-1 p-6 flex flex-col items-center justify-center">
         {/* Glass morphism card with blur effect */}
         <div className="backdrop-blur-md bg-white/70 p-8 rounded-lg shadow-lg text-center max-w-2xl">

@@ -46,7 +46,7 @@ const Login: React.FC = () => {
         }
       );
       console.log("Login Successful:", response.data);
-      sessionStorage.setItem('username', username); // Store username in session
+      sessionStorage.setItem('token', response.data.token); 
       setAlert({ message: "Login Successful", severity: "success" });
 
       // Navigate based on user role

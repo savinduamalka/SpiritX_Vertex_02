@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, BrowserRouter as Router } from 'react-router-dom';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Dashboard from './pages/adminPages/Dashboard';
@@ -9,6 +9,7 @@ import Summary from './pages/adminPages/Summary';
 
 const App: React.FC = () => {
   return (
+    <Router>
     <Routes>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
@@ -18,6 +19,7 @@ const App: React.FC = () => {
       <Route path="/admin/player-stats" element={<PlayerStats />} />
       <Route path="/admin/summary" element={<Summary />} />
     </Routes>
+    </Router>
   );
 };
 

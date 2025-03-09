@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Sidebar from "../../components/adminComponents/SIdebar";
+import Sidebar from "../../components/adminComponents/Sidebar";
 import natureImage from "../../assets/images/new.jpg";
 
 interface Summary {

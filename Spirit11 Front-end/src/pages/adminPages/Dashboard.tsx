@@ -1,4 +1,4 @@
-import Sidebar from "../../components/adminComponents/SIdebar";
+import Sidebar from "../../components/adminComponents/Sidebar";
 import natureImage from "../../assets/images/new.jpg";
 
 export default function Dashboard() {

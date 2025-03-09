@@ -47,12 +47,15 @@ const Login: React.FC = () => {
       );
       console.log("Login Successful:", response.data);
       sessionStorage.setItem('token', response.data.token); 
+      sessionStorage.setItem('userId', response.data.userId); // Store userId in session storage
       setAlert({ message: "Login Successful", severity: "success" });
 
       // Navigate based on user role
       const userRole = response.data.role;
       if (userRole === 'admin') {
         navigate('/admin');
+      } else if (userRole === 'user') {
+        navigate('/home');
       } else {
         navigate('/');
       }

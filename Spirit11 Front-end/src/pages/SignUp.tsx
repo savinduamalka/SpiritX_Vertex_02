@@ -28,10 +28,8 @@ const SignUp: React.FC = () => {
   };
 
   const validatePassword = (password: string) => {
-    const hasLowercase = /[a-z]/.test(password);
-    const hasUppercase = /[A-Z]/.test(password);
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    return hasLowercase && hasUppercase && hasSpecialChar;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).+$/;
+    return passwordRegex.test(password);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

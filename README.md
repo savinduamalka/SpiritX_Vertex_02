@@ -124,7 +124,7 @@ Ensure MongoDB is running on your local machine or use a cloud MongoDB service. 
 ### Links
 
 - **Front-End Deployment**: [Vercel Deployment Link](https://spirit-x-vertex-02-btok.vercel.app/login)
-- **Back-End Deployment**: [Render Deployment Link](https://your-render-deployment-link.onrender.com)
+- **Back-End Deployment**: [Render Deployment Link](https://spiritx-vertex-02-1.onrender.com)
 
 ### Additional Implementations or Functionalities
 

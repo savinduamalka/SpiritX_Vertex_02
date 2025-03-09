@@ -1,5 +1,5 @@
-import Sidebar from "../../components/adminComponents/Sidebar";
 import natureImage from "../../assets/images/new.jpg";
+import Sidebar from "../../components/adminComponents/Sidebar";
 
 export default function Dashboard() {
   return (
@@ -7,7 +7,7 @@ export default function Dashboard() {
       className="bg-cover bg-center min-h-screen flex flex-col md:flex-row"
       style={{ backgroundImage: `url(${natureImage})` }}
     >
-      <Sidebar />
+      <Sidebar/>
       <div className="flex-1 p-4">
         {/* Your page content goes here */}
       </div>

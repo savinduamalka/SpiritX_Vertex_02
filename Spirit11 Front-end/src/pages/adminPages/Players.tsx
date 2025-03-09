@@ -40,23 +40,29 @@ export default function Players() {
       .catch(error => console.error('Error deleting player:', error));
   };
 
+  const handleEditPlayer = (id: number) => {
+    // Handle editing player functionality (to be implemented)
+    console.log(`Edit player with id: ${id}`);
+  };
+
   return (
     <div
       className="bg-cover bg-center min-h-screen flex flex-col md:flex-row"
       style={{ backgroundImage: `url(${natureImage})` }}
     >
       <Sidebar />
-      <div className="flex-1 p-4 flex flex-col items-center">
-        <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-2xl">
-          <h2 className="text-2xl font-bold mb-4">Players</h2>
-          <div className="mb-4 flex flex-col md:flex-row">
+      <div className="flex-1 p-6 flex flex-col items-center">
+        <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-3xl">
+          <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Manage Players</h2>
+          
+          <div className="mb-6 flex flex-col md:flex-row gap-4">
             <input
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder="Player Name"
               value={newPlayer.name}
               onChange={handleInputChange}
-              className="p-2 border rounded mb-2 md:mb-0 md:mr-2"
+              className="p-3 border rounded-md w-full md:w-1/3"
             />
             <input
               type="text"
@@ -64,7 +70,7 @@ export default function Players() {
               placeholder="University"
               value={newPlayer.university}
               onChange={handleInputChange}
-              className="p-2 border rounded mb-2 md:mb-0 md:mr-2"
+              className="p-3 border rounded-md w-full md:w-1/3"
             />
             <input
               type="text"
@@ -72,18 +78,50 @@ export default function Players() {
               placeholder="Category"
               value={newPlayer.category}
               onChange={handleInputChange}
-              className="p-2 border rounded mb-2 md:mb-0 md:mr-2"
+              className="p-3 border rounded-md w-full md:w-1/3"
             />
-            <button onClick={handleAddPlayer} className="p-2 bg-blue-500 text-white rounded">Add Player</button>
+            <button 
+              onClick={handleAddPlayer} 
+              className="p-3 bg-blue-600 text-white rounded-md w-full md:w-1/4 mt-2 md:mt-0">
+              Add Player
+            </button>
           </div>
-          <ul>
-            {players.map(player => (
-              <li key={player.id} className="flex justify-between items-center p-2 border-b">
-                <span>{player.name} - {player.university} - {player.category}</span>
-                <button onClick={() => handleDeletePlayer(player.id)} className="p-2 bg-red-500 text-white rounded">Delete</button>
-              </li>
-            ))}
-          </ul>
+
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border border-gray-200 shadow-lg rounded-md">
+              <thead>
+                <tr className="text-left bg-gray-100 text-gray-700">
+                  <th className="p-4">Name</th>
+                  <th className="p-4">University</th>
+                  <th className="p-4">Category</th>
+                  <th className="p-4 text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {players.map(player => (
+                  <tr key={player.id} className="border-b">
+                    <td className="p-4">{player.name}</td>
+                    <td className="p-4">{player.university}</td>
+                    <td className="p-4">{player.category}</td>
+                    <td className="p-4 text-center flex gap-4 justify-center">
+                      <button
+                        onClick={() => handleEditPlayer(player.id)}
+                        className="p-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeletePlayer(player.id)}
+                        className="p-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-300"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

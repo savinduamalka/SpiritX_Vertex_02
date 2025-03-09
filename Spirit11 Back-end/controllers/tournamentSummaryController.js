@@ -8,14 +8,17 @@ export const getTournamentSummary = async (req, res) => {
     const overallRuns = playerStats.reduce((acc, player) => acc + player.totalRuns, 0);
     const overallWickets = playerStats.reduce((acc, player) => acc + player.wickets, 0);
 
-    const highestRunScorer = playerStats.reduce((prev, current) => (prev.totalRuns > current.totalRuns) ? prev : current);
-    const highestWicketTaker = playerStats.reduce((prev, current) => (prev.wickets > current.wickets) ? prev : current);
+    const maxRuns = Math.max(...playerStats.map(player => player.totalRuns));
+    const highestRunScorers = playerStats.filter(player => player.totalRuns === maxRuns).map(player => player.name);
+
+    const maxWickets = Math.max(...playerStats.map(player => player.wickets));
+    const highestWicketTakers = playerStats.filter(player => player.wickets === maxWickets).map(player => player.name);
 
     const summary = {
       overallRuns,
       overallWickets,
-      highestRunScorer: highestRunScorer.name,
-      highestWicketTaker: highestWicketTaker.name
+      highestRunScorers,
+      highestWicketTakers
     };
 
     res.status(200).json(summary);

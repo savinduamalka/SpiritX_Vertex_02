@@ -1,14 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import DashboardLayout from '../../components/adminComponents/DashboardLayout';
+import Sidebar from "../../components/adminComponents/SIdebar";
+import natureImage from "../../assets/images/new.jpg";
 
-const Dashboard: React.FC = () => {
+export default function Dashboard() {
   return (
-    <Router>
-      <DashboardLayout />
-    </Router>
+    <div
+      className="bg-cover bg-center min-h-screen flex flex-col md:flex-row"
+      style={{ backgroundImage: `url(${natureImage})` }}
+    >
+      <Sidebar />
+      <div className="flex-1 p-4">
+        {/* Your page content goes here */}
+      </div>
+    </div>
   );
-};
-
-export default Dashboard;
-
+}

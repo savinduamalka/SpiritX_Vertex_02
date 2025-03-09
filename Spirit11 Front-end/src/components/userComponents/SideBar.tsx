@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar: React.FC = () => {
+const UserSidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -40,23 +40,23 @@ const Sidebar: React.FC = () => {
         </div>
         <ul className="space-y-4 px-4">
           <li>
-            <Link to="/" className="text-lg hover:text-gray-400">
-              Home
+            <Link to="/select-team" className="text-lg hover:text-gray-400">
+              Select Your Team
             </Link>
           </li>
           <li>
-            <Link to="/admin/players" className="text-lg hover:text-gray-400">
-              Players
+            <Link to="/team" className="text-lg hover:text-gray-400">
+              Team
             </Link>
           </li>
           <li>
-            <Link to="/admin/player-stats" className="text-lg hover:text-gray-400">
-              Player Stats
+            <Link to="/budget" className="text-lg hover:text-gray-400">
+              Budget
             </Link>
           </li>
           <li>
-            <Link to="/admin/summary" className="text-lg hover:text-gray-400">
-              Tournament Summary
+            <Link to="/leaderboard" className="text-lg hover:text-gray-400">
+              Leaderboard
             </Link>
           </li>
         </ul>
@@ -70,4 +70,4 @@ const Sidebar: React.FC = () => {
   );
 };
 
-export default Sidebar;
+export default UserSidebar;

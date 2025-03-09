@@ -7,6 +7,7 @@ import userRouter from "./routes/userRoutes.js";
 import playerRouter from "./routes/playerRoutes.js";
 import playerStatsRouter from "./routes/playerStatsRoutes.js";
 import tournamentSummaryRouter from "./routes/tournamentSummaryRoutes.js";
+import teamRouter from "./routes/teamRoutes.js";
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use('/api/users', userRouter);
 app.use('/api/players', playerRouter);
 app.use('/api/player-stats', playerStatsRouter);
 app.use('/api/tournament-summary', tournamentSummaryRouter);
+app.use('/api/teams', teamRouter);
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,

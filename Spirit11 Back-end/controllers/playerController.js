@@ -10,7 +10,11 @@ export const createPlayer = async (req, res) => {
     return res.status(400).json({ message: "Name, university, and category are required" });
   }
   try {
-    const newPlayer = new Player({ name, university, category });
+    const starting = 1000;
+    const countDocuments = await Player.countDocuments({});
+    const playerId = starting + countDocuments + 1;
+
+    const newPlayer = new Player({ playerId, name, university, category });
     await newPlayer.save();
     res.status(201).json({ message: "Player created successfully" });
   } catch (err) {
@@ -32,7 +36,10 @@ export const deletePlayer = async (req, res) => {
     return res.status(403).json({ message: "Unauthorized" });
   }
   try {
-    await Player.findByIdAndDelete(req.params.id);
+    const player = await Player.findOneAndDelete({ playerId: req.params.id });
+    if (!player) {
+      return res.status(404).json({ message: "Player not found" });
+    }
     res.status(200).json({ message: "Player deleted successfully" });
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
@@ -44,13 +51,12 @@ export const updatePlayer = async (req, res) => {
     return res.status(403).json({ message: "Unauthorized" });
   }
   try {
-    await Player.findByIdAndUpdate
-      (req
-        .params
-        .id, req.body);
+    const player = await Player.findOneAndUpdate({ playerId: req.params.id }, req.body, { new: true });
+    if (!player) {
+      return res.status(404).json({ message: "Player not found" });
+    }
     res.status(200).json({ message: "Player updated successfully" });
-  }
-  catch (err) {
+  } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
-  }     
-}
+  }
+};

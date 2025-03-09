@@ -10,6 +10,7 @@ import SelectTeam from './pages/userPages/SelectTeam';
 import Budget from './pages/userPages/Budget';
 import Leaderboard from './pages/userPages/Leaderboard';
 import Team from './pages/userPages/Team';
+import Home from './pages/userPages/Home';
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         <Route path="/team" element={<Team />} />
         <Route path="/budget" element={<Budget />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );

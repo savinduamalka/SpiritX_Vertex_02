@@ -1,7 +1,8 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import SignUp from './components/SignUp';
-import Login from './components/Login';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import Dashboard from './pages/adminPages/Dashboard';
 
 const App: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const App: React.FC = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Navigate to="/signup" />} /> 
+      <Route path='/admin' element={<Dashboard />} />
     </Routes>
   );
 };
